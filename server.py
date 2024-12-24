@@ -1,4 +1,5 @@
 from flask import Flask, render_template_string
+import os
 
 app = Flask(__name__)
 
@@ -24,5 +25,6 @@ def home():
     return render_template_string(html_content)
 
 if __name__ == '__main__':
-    # Запускаем сервер на локальном хосте
-    app.run(debug=True)
+    # Указываем хост и порт
+    port = int(os.environ.get('PORT', 5000))  # Используем порт из переменной окружения или 5000 по умолчанию
+    app.run(host='0.0.0.0', port=port, debug=True)
